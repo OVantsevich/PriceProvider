@@ -23,7 +23,7 @@ func NewRedis(client *redis.Client, streamName string) *Redis {
 }
 
 // PublishPrices publish prices to the stream
-func (c *Redis) PublishPrices(ctx context.Context, prices model.Prices) error {
+func (c *Redis) PublishPrices(ctx context.Context, prices []*model.Price) error {
 	mp, _ := json.Marshal(prices)
 	_, err := c.Client.XAdd(ctx, &redis.XAddArgs{
 		Stream: c.StreamName,

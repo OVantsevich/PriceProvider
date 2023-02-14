@@ -4,31 +4,26 @@ package service
 import (
 	"Price-Provider/internal/model"
 	"context"
-	"crypto/rand"
 	"fmt"
-	"math/big"
 )
 
 // MQ stream interface for user service
 //
 //go:generate mockery --name=MQ --case=underscore --output=./mocks
 type MQ interface {
-	PublishPrices(ctx context.Context, prices model.Prices) error
+	PublishPrices(ctx context.Context, prices []*model.Price) error
 }
-
-// 24 bits “mantissa”, otherwise known as a coefficient or significand.
-const maxInt int64 = 1 << 24
 
 // Prices price service
 type Prices struct {
 	messageQueue MQ
-	prices       model.Prices
-	maxPrice     float32
+	prices       []*model.Price
+	maxChange    float32
 }
 
 // NewPrices constructor
-func NewPrices(mq MQ, mp float32) *Prices {
-	return &Prices{messageQueue: mq, prices: make(model.Prices), maxPrice: mp}
+func NewPrices(mq MQ, mch float32) *Prices {
+	return &Prices{messageQueue: mq, prices: model.GetStartPrices(), maxChange: mch}
 }
 
 // PublishPrices publishing prices into MQ
@@ -43,13 +38,9 @@ func (p *Prices) PublishPrices(ctx context.Context) error {
 
 // RandPrices random price generation
 func (p *Prices) RandPrices() {
-	for _, key := range p.prices.GetPricesKeys() {
-		p.prices[key] = p.maxPrice * Float32()
+	for _, pr := range p.prices {
+		chg := -p.maxChange + (2*p.maxChange)*model.Float32()
+		pr.SellingPrice += chg
+		pr.PurchasePrice += chg
 	}
-}
-
-// Float32 random float32 using crypto/rand
-func Float32() float32 {
-	nBig, _ := rand.Int(rand.Reader, big.NewInt(maxInt))
-	return float32(nBig.Int64()) / float32(maxInt)
 }
