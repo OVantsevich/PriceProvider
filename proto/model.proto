@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = ".";
+
+service PriceService{
+  rpc GetCurrentPrices(GetPricesRequest) returns(GetPricesResponse);
+}
+
+message GetPricesRequest{
+  repeated string Names = 1;
+}
+
+message GetPricesResponse{
+  repeated Price prices = 1;
+}
+
+message Price{
+  string Name = 1;
+  float SellingPrice = 2;
+  float PurchasePrice = 3;
+}
