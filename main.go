@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"Price-Provider/internal/config"
-	"Price-Provider/internal/repository"
-	"Price-Provider/internal/service"
+	"github.com/Ovantsevich/Price-Provider/internal/config"
+	"github.com/Ovantsevich/Price-Provider/internal/repository"
+	"github.com/Ovantsevich/Price-Provider/internal/service"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/sirupsen/logrus"

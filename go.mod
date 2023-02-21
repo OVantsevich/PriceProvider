@@ -1,4 +1,4 @@
-module Price-Provider
+module github.com/Ovantsevich/Price-Provider
 
 go 1.19
 

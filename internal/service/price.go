@@ -2,9 +2,9 @@
 package service
 
 import (
-	"Price-Provider/internal/model"
 	"context"
 	"fmt"
+	"github.com/Ovantsevich/Price-Provider/internal/model"
 )
 
 // MQ stream interface for user service
