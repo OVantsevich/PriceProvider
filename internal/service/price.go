@@ -4,7 +4,7 @@ package service
 import (
 	"context"
 	"fmt"
-	"github.com/Ovantsevich/Price-Provider/internal/model"
+	"github.com/Ovantsevich/PriceProvider/internal/model"
 )
 
 // MQ stream interface for user service
