@@ -10,7 +10,7 @@ message GetPricesRequest{
 }
 
 message GetPricesResponse{
-  repeated Price prices = 1;
+  map<string, Price> prices  = 1;
 }
 
 message Price{
