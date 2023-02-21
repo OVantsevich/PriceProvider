@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Ovantsevich/PriceProvider/internal/model"
+	"github.com/OVantsevich/PriceProvider/internal/model"
 
 	"github.com/go-redis/redis/v8"
 )
