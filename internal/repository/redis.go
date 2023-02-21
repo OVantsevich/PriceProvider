@@ -28,7 +28,7 @@ func (c *Redis) PublishPrices(ctx context.Context, prices []*model.Price) error 
 	_, err := c.Client.XAdd(ctx, &redis.XAddArgs{
 		Stream: c.StreamName,
 		Values: map[string]interface{}{
-			"prices": mp,
+			"data": mp,
 		},
 	}).Result()
 	if err != nil {

@@ -37,6 +37,8 @@ func (p *Prices) PublishPrices(ctx context.Context) error {
 }
 
 // RandPrices random price generation
+//
+//nolint:gomnd
 func (p *Prices) RandPrices() {
 	for _, pr := range p.prices {
 		chg := -p.maxChange + (2*p.maxChange)*model.Float32()

@@ -9,6 +9,9 @@ import (
 // 24 bits “mantissa”, otherwise known as a coefficient or significand.
 const maxInt int64 = 1 << 24
 
+// 24 bits “mantissa”, otherwise known as a coefficient or significand.
+const startPrice float32 = 50
+
 // Price info about one position
 type Price struct {
 	Name string
@@ -21,21 +24,24 @@ func GetStartPrices() []*Price {
 	return []*Price{
 		{
 			Name:          "gold",
-			SellingPrice:  50,
-			PurchasePrice: 50 + Float32(),
+			SellingPrice:  startPrice,
+			PurchasePrice: startPrice + Float32(),
 		},
 		{
 			Name:          "oil",
-			SellingPrice:  50,
-			PurchasePrice: 50 + Float32()},
+			SellingPrice:  startPrice,
+			PurchasePrice: startPrice + Float32(),
+		},
 		{
 			Name:          "tesla",
-			SellingPrice:  50,
-			PurchasePrice: 50 + Float32()},
+			SellingPrice:  startPrice,
+			PurchasePrice: startPrice + Float32(),
+		},
 		{
 			Name:          "google",
-			SellingPrice:  50,
-			PurchasePrice: 50 + Float32()},
+			SellingPrice:  startPrice,
+			PurchasePrice: startPrice + Float32(),
+		},
 	}
 }
 
