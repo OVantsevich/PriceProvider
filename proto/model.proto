@@ -1,7 +1,7 @@
 syntax = "proto3";
 option go_package = ".";
 
-service PriceService{
+service PriceProvider{
   rpc GetCurrentPrices(GetPricesRequest) returns(GetPricesResponse);
 }
 
@@ -15,6 +15,6 @@ message GetPricesResponse{
 
 message Price{
   string Name = 1;
-  float SellingPrice = 2;
-  float PurchasePrice = 3;
+  double SellingPrice = 2;
+  double PurchasePrice = 3;
 }

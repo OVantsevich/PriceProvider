@@ -7,16 +7,16 @@ import (
 )
 
 // 24 bits “mantissa”, otherwise known as a coefficient or significand.
-const maxInt int64 = 1 << 24
+const maxInt int64 = 1 << 53
 
 // 24 bits “mantissa”, otherwise known as a coefficient or significand.
-const startPrice float32 = 50
+const startPrice float64 = 50
 
 // Price info about one position
 type Price struct {
 	Name string
 	SellingPrice,
-	PurchasePrice float32
+	PurchasePrice float64
 }
 
 // GetStartPrices get start prices slice
@@ -25,28 +25,28 @@ func GetStartPrices() []*Price {
 		{
 			Name:          "gold",
 			SellingPrice:  startPrice,
-			PurchasePrice: startPrice + Float32(),
+			PurchasePrice: startPrice + Float64(),
 		},
 		{
 			Name:          "oil",
 			SellingPrice:  startPrice,
-			PurchasePrice: startPrice + Float32(),
+			PurchasePrice: startPrice + Float64(),
 		},
 		{
 			Name:          "tesla",
 			SellingPrice:  startPrice,
-			PurchasePrice: startPrice + Float32(),
+			PurchasePrice: startPrice + Float64(),
 		},
 		{
 			Name:          "google",
 			SellingPrice:  startPrice,
-			PurchasePrice: startPrice + Float32(),
+			PurchasePrice: startPrice + Float64(),
 		},
 	}
 }
 
-// Float32 random float32 using crypto/rand
-func Float32() float32 {
+// Float64 random float64 using crypto/rand
+func Float64() float64 {
 	nBig, _ := rand.Int(rand.Reader, big.NewInt(maxInt))
-	return float32(nBig.Int64()) / float32(maxInt)
+	return float64(nBig.Int64()) / float64(maxInt)
 }

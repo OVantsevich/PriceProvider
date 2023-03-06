@@ -13,6 +13,7 @@ type Config struct {
 	RedisPort     string `env:"REDIS_PORT,notEmpty" envDefault:"6379"`
 	RedisPassword string `env:"REDIS_PASSWORD,notEmpty" envDefault:"redis"`
 	StreamName    string `env:"STREAM_NAME,notEmpty" envDefault:"prices"`
+	Port          string `env:"PORT,notEmpty" envDefault:"3000"`
 }
 
 // NewConfig parsing config from environment

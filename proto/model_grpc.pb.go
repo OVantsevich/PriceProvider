@@ -18,86 +18,86 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// PriceServiceClient is the client API for PriceService service.
+// PriceProviderClient is the client API for PriceProvider service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PriceServiceClient interface {
+type PriceProviderClient interface {
 	GetCurrentPrices(ctx context.Context, in *GetPricesRequest, opts ...grpc.CallOption) (*GetPricesResponse, error)
 }
 
-type priceServiceClient struct {
+type priceProviderClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPriceServiceClient(cc grpc.ClientConnInterface) PriceServiceClient {
-	return &priceServiceClient{cc}
+func NewPriceProviderClient(cc grpc.ClientConnInterface) PriceProviderClient {
+	return &priceProviderClient{cc}
 }
 
-func (c *priceServiceClient) GetCurrentPrices(ctx context.Context, in *GetPricesRequest, opts ...grpc.CallOption) (*GetPricesResponse, error) {
+func (c *priceProviderClient) GetCurrentPrices(ctx context.Context, in *GetPricesRequest, opts ...grpc.CallOption) (*GetPricesResponse, error) {
 	out := new(GetPricesResponse)
-	err := c.cc.Invoke(ctx, "/PriceService/GetCurrentPrices", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/PriceProvider/GetCurrentPrices", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// PriceServiceServer is the server API for PriceService service.
-// All implementations must embed UnimplementedPriceServiceServer
+// PriceProviderServer is the server API for PriceProvider service.
+// All implementations must embed UnimplementedPriceProviderServer
 // for forward compatibility
-type PriceServiceServer interface {
+type PriceProviderServer interface {
 	GetCurrentPrices(context.Context, *GetPricesRequest) (*GetPricesResponse, error)
-	mustEmbedUnimplementedPriceServiceServer()
+	mustEmbedUnimplementedPriceProviderServer()
 }
 
-// UnimplementedPriceServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedPriceServiceServer struct {
+// UnimplementedPriceProviderServer must be embedded to have forward compatible implementations.
+type UnimplementedPriceProviderServer struct {
 }
 
-func (UnimplementedPriceServiceServer) GetCurrentPrices(context.Context, *GetPricesRequest) (*GetPricesResponse, error) {
+func (UnimplementedPriceProviderServer) GetCurrentPrices(context.Context, *GetPricesRequest) (*GetPricesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentPrices not implemented")
 }
-func (UnimplementedPriceServiceServer) mustEmbedUnimplementedPriceServiceServer() {}
+func (UnimplementedPriceProviderServer) mustEmbedUnimplementedPriceProviderServer() {}
 
-// UnsafePriceServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PriceServiceServer will
+// UnsafePriceProviderServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PriceProviderServer will
 // result in compilation errors.
-type UnsafePriceServiceServer interface {
-	mustEmbedUnimplementedPriceServiceServer()
+type UnsafePriceProviderServer interface {
+	mustEmbedUnimplementedPriceProviderServer()
 }
 
-func RegisterPriceServiceServer(s grpc.ServiceRegistrar, srv PriceServiceServer) {
-	s.RegisterService(&PriceService_ServiceDesc, srv)
+func RegisterPriceProviderServer(s grpc.ServiceRegistrar, srv PriceProviderServer) {
+	s.RegisterService(&PriceProvider_ServiceDesc, srv)
 }
 
-func _PriceService_GetCurrentPrices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PriceProvider_GetCurrentPrices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPricesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PriceServiceServer).GetCurrentPrices(ctx, in)
+		return srv.(PriceProviderServer).GetCurrentPrices(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/PriceService/GetCurrentPrices",
+		FullMethod: "/PriceProvider/GetCurrentPrices",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PriceServiceServer).GetCurrentPrices(ctx, req.(*GetPricesRequest))
+		return srv.(PriceProviderServer).GetCurrentPrices(ctx, req.(*GetPricesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// PriceService_ServiceDesc is the grpc.ServiceDesc for PriceService service.
+// PriceProvider_ServiceDesc is the grpc.ServiceDesc for PriceProvider service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var PriceService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "PriceService",
-	HandlerType: (*PriceServiceServer)(nil),
+var PriceProvider_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "PriceProvider",
+	HandlerType: (*PriceProviderServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetCurrentPrices",
-			Handler:    _PriceService_GetCurrentPrices_Handler,
+			Handler:    _PriceProvider_GetCurrentPrices_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
