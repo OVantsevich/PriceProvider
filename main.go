@@ -41,7 +41,7 @@ func main() {
 	go startRand(context.Background(), priceService)
 	priceHandler := handler.NewPrice(priceService)
 
-	listen, err := net.Listen("tcp", fmt.Sprintf("localhost:%s", cfg.Port))
+	listen, err := net.Listen("tcp", fmt.Sprintf("%s:%s", cfg.Host, cfg.Port))
 	if err != nil {
 		defer logrus.Fatalf("error while listening port: %e", err)
 	}
