@@ -4,6 +4,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"math"
 	"sync"
 
 	"github.com/OVantsevich/PriceProvider/internal/model"
@@ -52,8 +53,8 @@ func (p *Prices) RandPrices() {
 	p.mu.Lock()
 	for _, pr := range p.prices {
 		chg := -p.maxChange + (2*p.maxChange)*model.Float64()
-		pr.SellingPrice += chg
-		pr.PurchasePrice += chg
+		pr.SellingPrice = math.Abs(pr.SellingPrice + chg)
+		pr.PurchasePrice += math.Abs(pr.PurchasePrice + chg)
 	}
 	p.mu.Unlock()
 }

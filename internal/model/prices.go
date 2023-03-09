@@ -6,7 +6,7 @@ import (
 	"math/big"
 )
 
-// 24 bits “mantissa”, otherwise known as a coefficient or significand.
+// 53 bits “mantissa”, otherwise known as a coefficient or significand.
 const maxInt int64 = 1 << 53
 
 // 24 bits “mantissa”, otherwise known as a coefficient or significand.
