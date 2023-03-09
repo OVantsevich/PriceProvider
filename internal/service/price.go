@@ -54,7 +54,7 @@ func (p *Prices) RandPrices() {
 	for _, pr := range p.prices {
 		chg := -p.maxChange + (2*p.maxChange)*model.Float64()
 		pr.SellingPrice = math.Abs(pr.SellingPrice + chg)
-		pr.PurchasePrice += math.Abs(pr.PurchasePrice + chg)
+		pr.PurchasePrice = math.Abs(pr.PurchasePrice + chg)
 	}
 	p.mu.Unlock()
 }
