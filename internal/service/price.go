@@ -71,6 +71,7 @@ func (p *Prices) GetCurrentPrices(ctx context.Context, names []string) (map[stri
 		default:
 			price, ok := p.pricesMAP[n]
 			if !ok {
+				p.mu.RUnlock()
 				return nil, fmt.Errorf("no such price available")
 			}
 			result[n] = &(*price)
