@@ -43,15 +43,14 @@ func main() {
 
 	listen, err := net.Listen("tcp", fmt.Sprintf("%s:%s", cfg.Host, cfg.Port))
 	if err != nil {
-		defer logrus.Fatalf("error while listening port: %e", err)
+		logrus.Fatalf("error while listening port: %v", err)
 	}
 	ns := grpc.NewServer()
 	pr.RegisterPriceProviderServer(ns, priceHandler)
 
 	if err = ns.Serve(listen); err != nil {
-		defer logrus.Fatalf("error while listening server: %e", err)
+		logrus.Fatalf("error while listening server: %v", err)
 	}
-
 }
 
 func startRand(ctx context.Context, ps *service.Prices) {

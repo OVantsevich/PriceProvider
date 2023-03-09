@@ -36,7 +36,7 @@ func (h *Prices) GetCurrentPrices(ctx context.Context, request *pr.GetPricesRequ
 	if err != nil {
 		logrus.WithFields(logrus.Fields{
 			"request.Names": request.Names,
-		}).Errorf("prices - GetCurrentPrices - GetCurrentPrices: %e", err)
+		}).Errorf("prices - GetCurrentPrices - GetCurrentPrices: %v", err)
 		return nil, status.Error(codes.Unknown, err.Error())
 	}
 	response := &pr.GetPricesResponse{
