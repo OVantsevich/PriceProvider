@@ -12,7 +12,7 @@ type Config struct {
 	RedisHost     string `env:"REDIS_HOST,notEmpty" envDefault:"localhost"`
 	RedisPort     string `env:"REDIS_PORT,notEmpty" envDefault:"6379"`
 	RedisPassword string `env:"REDIS_PASSWORD,notEmpty" envDefault:"redis"`
-	StreamName    string `env:"STREAM_NAME,notEmpty" envDefault:"prices"`
+	StreamName    string `env:"STREAM_NAME,notEmpty" envDefault:"redisStream"`
 	Port          string `env:"PORT,notEmpty" envDefault:"3000"`
 	Host          string `env:"HOST,notEmpty" envDefault:"localhost"`
 }
